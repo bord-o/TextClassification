@@ -18,4 +18,13 @@ module Gzip =
         use gZipStream = new GZipStream(inStream, CompressionMode.Decompress)
         use reader = new StreamReader(gZipStream)
         reader.ReadToEnd()
+    
+    // This is the length in bytes of the compressed text
+    let C txt = (compress txt).Length
+
+    // This is the normalized compression distance between two texts
+    let NCD (x : string) (y : string) =
+        let xy = x+y
+        (C xy - min (C x) (C y)) / (max (C x) (C y))
+
 

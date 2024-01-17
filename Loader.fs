@@ -7,8 +7,10 @@ module Loader =
 
 
     let initData (dataDir:string) =
-        let test = File.ReadAllBytes(Path.Join(dataDir, "test.csv" )) |> Encoding.UTF8.GetString
-        let train = File.ReadAllBytes(Path.Join(dataDir, "train.csv")) |> Encoding.UTF8.GetString
+
+        let test = File.ReadAllBytes(Path.Join(dataDir, "test.csv" )) 
+        let train = File.ReadAllBytes(Path.Join(dataDir, "train.csv")) 
+        let sample = test[0..10]
         ()
 
         //printfn $"{test}"
