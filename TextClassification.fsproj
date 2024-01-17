@@ -10,10 +10,11 @@
     <None Include="Data\train.csv" />
     <Compile Include="Gzip.fs" />
     <Compile Include="Loader.fs" />
-    <Compile Include="Lorem.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
-  <ItemGroup />
+  <ItemGroup>
+    <PackageReference Include="FSharp.Data" Version="6.3.0" />
+  </ItemGroup>
 
 </Project>
