@@ -8,16 +8,18 @@ open FSharp.Data
 module Loader =
 
 
-    //let dataDir = @"C:\Users\BLittle\Documents\GIT\TextClassification\Data\"
-    [<Literal>]
-    let fulldata = @"C:\Users\brody\source\repos\TextClassification\Data\test.csv"
+    //[<Literal>]
+    //let fulldata = @"C:\Users\brody\source\repos\TextClassification\Data\test.csv"
+    //let dataDir = @"C:\Users\brody\source\repos\TextClassification\Data\"
 
-    let dataDir = @"C:\Users\brody\source\repos\TextClassification\Data\"
-    //let fulldata = @"C:\Users\BLittle\Documents\GIT\TextClassification\Data\test.csv"
+
+    [<Literal>]
+    let fulldata = @"C:\Users\BLittle\Documents\GIT\TextClassification\Data\test.csv"
+    let dataDir = @"C:\Users\BLittle\Documents\GIT\TextClassification\Data\"
 
 
     type DataRow = CsvProvider<fulldata>
-    type TextClass = { genre: int; text: string }
+    type TextClass = { genre: int; text: string}
 
 
     let initData () =
@@ -34,8 +36,7 @@ module Loader =
                 { genre = row.``Class Index``
                   text = row.Title + Environment.NewLine + row.Description })
 
-        let sample = Seq.take 10 test
-        (train, test, sample)
+        (train, test)
 
 //printfn $"{test}"
 //printfn $"{train}"

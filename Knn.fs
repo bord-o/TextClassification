@@ -14,7 +14,7 @@ module Knn =
                 // printfn $"Processing data: {i}";
                 { genre = row.genre
                   distance = (NCD txt row.text) })
-            |> Seq.sortByDescending (fun dist -> dist.distance)
+            |> Seq.sortBy (fun dist -> dist.distance)
             |> Seq.take k
 
         let genre, count =
@@ -41,9 +41,7 @@ module Knn =
             let correct_count =
                 (results |> List.filter (fun (run_num, correct) -> correct)).Length
 
-            let total = results.Length
-
-            (float correct_count) / (float total)
+            (float correct_count) / (float results.Length)
 
         printfn $"Ran {results.Length} tests and found a total accuracy of {accuracy}"
         accuracy
