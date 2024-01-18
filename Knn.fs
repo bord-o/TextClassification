@@ -7,20 +7,21 @@ module Knn =
 
     type Distance = { genre: int; distance: float }
 
-    let genres = 
-        Map.empty 
+    let genres =
+        Map.empty
         |> Map.add 1 "World"
         |> Map.add 2 "Sports"
         |> Map.add 3 "Business"
         |> Map.add 4 "Sci/Tech"
 
     let predict (txt: string) (data: Loader.TextClass seq) (k: int) : int =
+        let cx = C txt // cache this since it doesn't change across the data 
         let distances =
             data
             |> PSeq.mapi (fun i (row: Loader.TextClass) ->
                 // printfn $"Processing data: {i}";
                 { genre = row.genre
-                  distance = (NCD txt row.text) })
+                  distance = (NCD cx txt row.text) })
             |> Seq.sortBy (fun dist -> dist.distance)
             |> Seq.take k
 

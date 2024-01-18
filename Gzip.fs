@@ -23,9 +23,9 @@ module Gzip =
     let C txt = (compress txt).Length
 
     // This is the normalized compression distance between two texts
-    let NCD (x: string) (y: string) =
+    // we pass in cx as an optimization since it will not change accross the test points
+    let NCD (cx : int) (x: string) (y: string) =
         let cxy = C(x + y)
-        let cx = C x
         let cy = C y
         let minxy = min cx cy 
         let maxxy = float <| max cx cy 

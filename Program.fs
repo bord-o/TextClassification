@@ -1,12 +1,11 @@
 ﻿namespace TextClassification
 
 open System
-open System.Text
 open System.IO
 open System.Diagnostics
 
 module Main =
-    //  (1: “World”, 2: “Sports”, 3: “Business”,4: “Sci/Tech”)
+    //  (1: “World”, 2: “Sports”, 3: “Business”, 4: “Sci/Tech”)
 
     let (train, test) = Loader.initData ()
 
@@ -20,8 +19,12 @@ module Main =
 
         let timer = new Stopwatch()
         timer.Start()
-        let accuracy = Knn.test (Seq.take 200 randomSample) train 3
+        let accuracy = Knn.test (Seq.take 10 randomSample) train 3
         timer.Stop()
-        File.WriteAllText("./results.txt", $"The overall accuracy was: {accuracy} and testing completed in {timer.Elapsed.Minutes} minutes")
-        
+
+        File.WriteAllText(
+            "./results.txt",
+            $"The overall accuracy was: {accuracy} and testing completed in {timer.Elapsed.Minutes} minutes"
+        )
+
         int (accuracy * 100.0)

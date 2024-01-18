@@ -15,11 +15,12 @@ module Loader =
 
     [<Literal>]
     let fulldata = @"C:\Users\BLittle\Documents\GIT\TextClassification\Data\test.csv"
+
     let dataDir = @"C:\Users\BLittle\Documents\GIT\TextClassification\Data\"
 
 
     type DataRow = CsvProvider<fulldata>
-    type TextClass = { genre: int; text: string}
+    type TextClass = { genre: int; text: string }
 
 
     let initData () =
