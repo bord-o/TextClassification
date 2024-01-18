@@ -5,7 +5,7 @@ open FSharp.Collections.ParallelSeq
 module Knn =
     open Gzip
 
-    type Distance = { genre: int; distance: float}
+    type Distance = { genre: int; distance: float }
 
     let predict (txt: string) (data: Loader.TextClass seq) (k: int) : int =
         let distances =
@@ -32,17 +32,18 @@ module Knn =
         // run number and was it accurate
         let results =
             test
-            |> Seq.mapi (fun i { genre = genre; text = text } -> 
+            |> Seq.mapi (fun i { genre = genre; text = text } ->
                 printfn $"Test number {i} with genre: {genre}"
                 (i, (predict text train k) = genre))
+            |> Seq.toList
 
         let accuracy =
             let correct_count =
-                results |> Seq.filter (fun (run_num, correct) -> correct) |> Seq.length
+                (results |> List.filter (fun (run_num, correct) -> correct)).Length
 
-            let total = Seq.length results
+            let total = results.Length
 
-            correct_count / total
+            (float correct_count) / (float total)
 
-        printfn $"Ran {Seq.length results} tests and found a total accuracy of {accuracy}"
+        printfn $"Ran {results.Length} tests and found a total accuracy of {accuracy}"
         accuracy
