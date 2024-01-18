@@ -5,8 +5,9 @@ open System.Text
 open System.IO
 open System.Diagnostics
 
-// Usage:
 module Main =
+    //  (1: “World”, 2: “Sports”, 3: “Business”,4: “Sci/Tech”)
+
     let (train, test) = Loader.initData ()
 
     [<EntryPoint>]
@@ -19,7 +20,7 @@ module Main =
 
         let timer = new Stopwatch()
         timer.Start()
-        let accuracy = Knn.test (Seq.take 100 randomSample) train 3
+        let accuracy = Knn.test (Seq.take 200 randomSample) train 3
         timer.Stop()
         File.WriteAllText("./results.txt", $"The overall accuracy was: {accuracy} and testing completed in {timer.Elapsed.Minutes} minutes")
         

@@ -7,6 +7,13 @@ module Knn =
 
     type Distance = { genre: int; distance: float }
 
+    let genres = 
+        Map.empty 
+        |> Map.add 1 "World"
+        |> Map.add 2 "Sports"
+        |> Map.add 3 "Business"
+        |> Map.add 4 "Sci/Tech"
+
     let predict (txt: string) (data: Loader.TextClass seq) (k: int) : int =
         let distances =
             data
@@ -22,7 +29,7 @@ module Knn =
             |> Seq.countBy (fun dist -> dist.genre)
             |> Seq.maxBy (fun (genre, count) -> count)
 
-        printfn $"Found genre: {genre} to be most likely, with a count of {count}/{k}\n"
+        printfn $"PREDICTION: {genres[genre]} [ {count}/{k} NEIGHBORS ]\n"
         genre
 
     let test (test: Loader.TextClass seq) (train: Loader.TextClass seq) (k: int) : float =
@@ -33,7 +40,7 @@ module Knn =
         let results =
             test
             |> Seq.mapi (fun i { genre = genre; text = text } ->
-                printfn $"Test number {i} with genre: {genre}"
+                printfn $"TEST WITH: {genres[genre]} [ {i}/{Seq.length test} TESTS COMPLETED ]"
                 (i, (predict text train k) = genre))
             |> Seq.toList
 
