@@ -24,7 +24,10 @@ module Gzip =
 
     // This is the normalized compression distance between two texts
     let NCD (x : string) (y : string) =
-        let xy = x+y
-        (C xy - min (C x) (C y)) / (max (C x) (C y))
+        let cxy = C (x+y)
+        let minxy = min (C x) (C y)
+        let maxxy = float <| max (C x) (C y)
+
+        float (cxy - minxy) / (maxxy)
 
 

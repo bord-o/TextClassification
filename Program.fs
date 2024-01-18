@@ -3,10 +3,10 @@ open System
 open System.Text
 // Usage:
 module Main = 
-    let (train, test)  = Loader.initData ()
+    let (train, test, sample)  = Loader.initData ()
 
     let compressionTest data =  
-        let original = Encoding.UTF8.GetString test
+        let original = "asdf" 
         let compressed = Gzip.compress original
         let decompressed = Gzip.decompress compressed
         printfn "Original Length: %A" original.Length
@@ -18,7 +18,10 @@ module Main =
 
     [<EntryPoint>]
     let main args =
-        0
+        // Seq.iter (fun row -> printfn "%A" row) sample
+        // Knn.predict "The news was wrong" train 10
+        let accuracy = Knn.test (Seq.take 100 test) train 10
+        int accuracy
         
 
 

@@ -10,10 +10,12 @@
     <None Include="Data\train.csv" />
     <Compile Include="Gzip.fs" />
     <Compile Include="Loader.fs" />
+    <Compile Include="Knn.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FSharp.Collections.ParallelSeq" Version="1.2.0" />
     <PackageReference Include="FSharp.Data" Version="6.3.0" />
   </ItemGroup>
 
