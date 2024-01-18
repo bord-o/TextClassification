@@ -20,7 +20,7 @@ module Main =
     let main args =
         // Seq.iter (fun row -> printfn "%A" row) sample
         // Knn.predict "The news was wrong" train 10
-        let accuracy = Knn.test (Seq.take 100 test) train 10
+        let accuracy = Knn.test (Seq.take 2 test) train 3
         int accuracy
         
 
